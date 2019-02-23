@@ -1,6 +1,8 @@
 package org.femtoframework.net.socket;
 
-import org.bolango.tools.nutlet.Nutlet;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * 测试
@@ -9,7 +11,7 @@ import org.bolango.tools.nutlet.Nutlet;
  * @version 1.00 2005-1-6 17:33:37
  */
 
-public class SocketValveListenersTest extends Nutlet
+public class SocketValveListenersTest
 {
     private SocketValve valve = new AbstractSocketValve()
     {
@@ -25,6 +27,7 @@ public class SocketValveListenersTest extends Nutlet
         }
     };
 
+    @Test
     public void testSocketValveListeners() throws Exception
     {
         new SocketValveListeners();
@@ -46,6 +49,7 @@ public class SocketValveListenersTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testAddListener() throws Exception
     {
         SocketValveListeners listeners = new SocketValveListeners();
@@ -63,7 +67,7 @@ public class SocketValveListenersTest extends Nutlet
         };
         listeners.addListener(listener);
 
-        assertEquals(1, listeners.getListeners().length);
+        assertEquals(1, listeners.getListenerCount());
     }
 
     /**
@@ -71,6 +75,7 @@ public class SocketValveListenersTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testRemoveListener() throws Exception
     {
         SocketValveListeners listeners = new SocketValveListeners();
@@ -87,9 +92,9 @@ public class SocketValveListenersTest extends Nutlet
             }
         };
         listeners.addListener(listener);
-        assertEquals(1, listeners.getListeners().length);
+        assertEquals(1, listeners.getListenerCount());
         listeners.removeListener(listener);
-        assertEquals(0, listeners.getListeners().length);
+        assertEquals(0, listeners.getListenerCount());
     }
 
     /**
@@ -97,6 +102,7 @@ public class SocketValveListenersTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testHandleEvent() throws Exception
     {
         SocketValveListeners listeners = new SocketValveListeners();
@@ -115,7 +121,7 @@ public class SocketValveListenersTest extends Nutlet
             }
         };
         listeners.addListener(listener);
-        assertEquals(1, listeners.getListeners().length);
+        assertEquals(1, listeners.getListenerCount());
 
         SocketValveEvent event = new SocketValveEvent(valve, null, 0, null);
         listeners.handleEvent(event);
@@ -128,9 +134,10 @@ public class SocketValveListenersTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetListeners() throws Exception
     {
         SocketValveListeners listeners = new SocketValveListeners();
-        assertEquals(0, listeners.getListeners().length);
+        assertEquals(0, listeners.getListenerCount());
     }
 }

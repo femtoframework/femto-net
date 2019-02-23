@@ -4,31 +4,37 @@ import java.net.Socket;
 import java.nio.channels.SocketChannel;
 import java.util.concurrent.ExecutorService;
 
-import org.bolango.net.SocketUtil;
-import org.bolango.nio.NioUtil;
-import org.bolango.tools.nutlet.Nutlet;
-import org.bolango.tools.nutlet.NutletUtil;
-import org.bolango.jade.thread.ExecutorUtil;
-import org.bolango.jade.Startable;
+import org.femtoframework.bean.Startable;
+import org.femtoframework.io.IOUtil;
+import org.femtoframework.util.nutlet.NutletUtil;
+import org.femtoframework.util.thread.ExecutorUtil;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author fengyun
  * @version 1.00 2004-12-27 13:17:17
  */
 
-public class SocketChannelEndpointTest extends Nutlet
+public class SocketChannelEndpointTest
 {
+    @Test
     public void testSocketChannelEndpoint() throws Exception
     {
         new SocketChannelEndpoint();
     }
 
+    @Test
     public void testGetBufferSize() throws Exception
     {
         SocketChannelEndpoint endpoint = new SocketChannelEndpoint();
         assertEquals(SocketChannelEndpoint.DEFAULT_BUFFER_SIZE, endpoint.getBufferSize());
     }
 
+    @Test
     public void testSetBufferSize() throws Exception
     {
         SocketChannelEndpoint endpoint = new SocketChannelEndpoint();
@@ -37,12 +43,14 @@ public class SocketChannelEndpointTest extends Nutlet
         assertEquals(bufferSize, endpoint.getBufferSize());
     }
 
+    @Test
     public void testGetHandler() throws Exception
     {
         SocketChannelEndpoint endpoint = new SocketChannelEndpoint();
         assertNull(endpoint.getHandler());
     }
 
+    @Test
     public void testSetHandler() throws Exception
     {
         SocketChannelEndpoint endpoint = new SocketChannelEndpoint();
@@ -58,7 +66,7 @@ public class SocketChannelEndpointTest extends Nutlet
             public void handle(SocketChannel socket)
             {
                 System.out.println(socket);
-                NioUtil.close(socket);
+                IOUtil.close(socket);
             }
         });
         assertNotNull(endpoint.getHandler());
@@ -72,7 +80,7 @@ public class SocketChannelEndpointTest extends Nutlet
 
         Socket socket = new Socket("127.0.0.1", 8888);
         socket.getInputStream();
-        SocketUtil.close(socket);
+        IOUtil.close(socket);
 
         endpoint.stop();
         endpoint.destroy();

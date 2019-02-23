@@ -1,14 +1,17 @@
 package org.femtoframework.net.socket;
 
-import org.bolango.tools.nutlet.Nutlet;
-import org.bolango.tools.nutlet.NutletUtil;
+import org.femtoframework.util.nutlet.NutletUtil;
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * @author fengyun
  * @version 1.00 2005-1-6 18:28:19
  */
 
-public class SocketValveEventTest extends Nutlet
+public class SocketValveEventTest
 {
     private SocketValve valve = new AbstractSocketValve()
     {
@@ -24,6 +27,7 @@ public class SocketValveEventTest extends Nutlet
         }
     };
 
+    @Test
     public void testSocketValveEvent() throws Exception
     {
         SocketContext context = new SimpleSocketContext();
@@ -32,12 +36,14 @@ public class SocketValveEventTest extends Nutlet
         assertEquals(0, event.getArguments().length);
     }
 
+    @Test
     public void testGetContext() throws Exception
     {
         SocketValveEvent event = new SocketValveEvent(valve, null, 0, new Object[0]);
         assertNull(event.getContext());
     }
 
+    @Test
     public void testGetArguments() throws Exception
     {
         SocketContext context = new SimpleSocketContext();
@@ -45,6 +51,7 @@ public class SocketValveEventTest extends Nutlet
         assertNull(event.getArguments());
     }
 
+    @Test
     public void testGetValve() throws Exception
     {
         SocketContext context = new SimpleSocketContext();
@@ -52,6 +59,7 @@ public class SocketValveEventTest extends Nutlet
         assertEquals(valve, event.getValve());
     }
 
+    @Test
     public void testGetAction() throws Exception
     {
         SocketContext context = new SimpleSocketContext();

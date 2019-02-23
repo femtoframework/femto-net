@@ -6,9 +6,12 @@ import java.net.ServerSocket;
 import java.net.SocketAddress;
 import java.nio.channels.SocketChannel;
 
-import org.bolango.nio.ByteBufferPool;
-import org.bolango.tools.nutlet.Nutlet;
-import org.bolango.tools.nutlet.NutletUtil;
+import org.femtoframework.nio.ByteBufferPool;
+import org.femtoframework.util.ArrayUtil;
+import org.femtoframework.util.nutlet.NutletUtil;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 /**
  * 测试CommandContext
@@ -19,9 +22,10 @@ import org.bolango.tools.nutlet.NutletUtil;
  * @version 1.00 2005-1-2 23:14:53
  */
 
-public class CommandContextTest extends Nutlet
+public class CommandContextTest
 {
 
+    @Test
     public void testInit0() throws Exception
     {
         CommandContext context = new CommandContext();
@@ -33,6 +37,7 @@ public class CommandContextTest extends Nutlet
         }
     }
 
+    @Test
     public void testInit1() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -53,6 +58,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testRead0() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -81,6 +87,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testWrite0() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -109,6 +116,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testFlip() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -131,6 +139,7 @@ public class CommandContextTest extends Nutlet
         serverSocket.close();
     }
 
+    @Test
     public void testReadFully() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -156,6 +165,7 @@ public class CommandContextTest extends Nutlet
         serverSocket.close();
     }
 
+    @Test
     public void testFlush0() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -179,6 +189,7 @@ public class CommandContextTest extends Nutlet
         serverSocket.close();
     }
 
+    @Test
     public void testOnBufferWritten() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -229,6 +240,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetCommandBytes() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -252,12 +264,14 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetCommandLength() throws Exception
     {
         CommandContext context = new CommandContext();
         assertEquals(0, context.getCommandLength());
     }
 
+    @Test
     public void testPrintSpace() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -284,6 +298,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint0() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -311,6 +326,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint1() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -339,6 +355,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint2() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -367,6 +384,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint3() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -389,11 +407,16 @@ public class CommandContextTest extends Nutlet
         serverSocket.close();
     }
 
+    public static void assertMatches(byte[] bytes, int off1, byte[] array, int off2, int len) {
+        assertTrue(ArrayUtil.matches(bytes, off1, array, off2, len));
+    }
+
     /**
      * 测试输出byte数组
      *
      * @throws Exception
      */
+    @Test
     public void testPrint4() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -421,6 +444,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint5() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -448,6 +472,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrint6() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -492,6 +517,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrintln0() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -537,6 +563,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrintln1() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -564,6 +591,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrintln2() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -591,6 +619,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testPrintln3() throws Exception
     {
         SocketAddress address = new InetSocketAddress(9999);
@@ -618,6 +647,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetWriteBuffCapacity() throws Exception
     {
         CommandContext context = new CommandContext();
@@ -629,6 +659,7 @@ public class CommandContextTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testSetWriteBuffCapacity() throws Exception
     {
         CommandContext context = new CommandContext();
@@ -636,12 +667,14 @@ public class CommandContextTest extends Nutlet
         assertEquals(ByteBufferPool.SIZE_8192, context.getWriteBuffCapacity());
     }
 
+    @Test
     public void testGetReadBuffCapacity() throws Exception
     {
         CommandContext context = new CommandContext();
         assertEquals(1024, context.getReadBuffCapacity());
     }
 
+    @Test
     public void testSetReadBuffCapacity() throws Exception
     {
         CommandContext context = new CommandContext();
@@ -649,12 +682,14 @@ public class CommandContextTest extends Nutlet
         assertEquals(ByteBufferPool.SIZE_8192, context.getReadBuffCapacity());
     }
 
+    @Test
     public void testClose() throws Exception
     {
         CommandContext context = new CommandContext();
         context.close();
     }
 
+    @Test
     public void testGetCommandBuffer() throws Exception
     {
         CommandContext context = new CommandContext();

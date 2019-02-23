@@ -1,17 +1,21 @@
-package org.bolango.net.ip;
+package org.femtoframework.net.ip;
+
+import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
-import org.bolango.tools.nutlet.Nutlet;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author fengyun
  * @version 1.00 2006-12-12 23:14:18
  */
 
-public class AccessControlBeanTest extends Nutlet
+public class AccessControlBeanTest
 {
+    @Test
     public void testAddAllow() throws Exception
     {
         AccessControlBean bean = new AccessControlBean();
@@ -30,6 +34,7 @@ public class AccessControlBeanTest extends Nutlet
         }
     }
 
+    @Test
     public void testAddAllow1() throws Exception
     {
         AccessControlBean bean = new AccessControlBean();

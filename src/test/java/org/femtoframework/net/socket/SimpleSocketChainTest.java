@@ -3,8 +3,7 @@ package org.femtoframework.net.socket;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.bolango.tools.nutlet.Nutlet;
-import org.bolango.util.ArrayUtil;
+import org.junit.Test;
 
 /**
  * 测试SimpleSocketChain
@@ -12,11 +11,12 @@ import org.bolango.util.ArrayUtil;
  * @author fengyun
  * @version 1.00 2005-2-28 14:21:28
  */
-public class SimpleSocketChainTest extends Nutlet
+public class SimpleSocketChainTest
 {
     /**
      * 测试handleNext
      */
+    @Test
     public void testHandleNext() throws Exception
     {
         SocketValve[] valves = new SocketValve[1];
@@ -46,7 +46,7 @@ public class SimpleSocketChainTest extends Nutlet
             }
         };
         List<SocketValve> list = new ArrayList<SocketValve>(4);
-        ArrayUtil.addAll(list, valves);
+        list.add(valves[0]);
         SimpleSocketChain chain = new SimpleSocketChain(list);
         chain.handleNext(null);
     }

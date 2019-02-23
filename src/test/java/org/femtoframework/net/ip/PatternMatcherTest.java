@@ -1,13 +1,15 @@
-package org.bolango.net.ip;
+package org.femtoframework.net.ip;
 
-import org.bolango.tools.nutlet.Nutlet;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author fengyun
  * @version 1.00 2006-12-12 22:23:06
  */
 
-public class PatternMatcherTest extends Nutlet
+public class PatternMatcherTest
 {
     public void testPatternMatcher0() throws Exception
     {

@@ -1,8 +1,12 @@
-package org.bolango.net.ip;
+package org.femtoframework.net.ip;
+
+import org.femtoframework.util.ArrayUtil;
+import org.junit.Test;
 
 import java.net.InetAddress;
 
-import org.bolango.tools.nutlet.Nutlet;
+import static org.junit.Assert.*;
+
 
 /**
  * 测试IPUtil
@@ -10,11 +14,12 @@ import org.bolango.tools.nutlet.Nutlet;
  * @author fengyun
  * @version 1.00 2006-12-10 19:15:56
  */
-public class IPUtilTest extends Nutlet
+public class IPUtilTest
 {
     /**
      * 测试isValidIPv6
      */
+    @Test
     public void testIsValidIPv6() throws Exception
     {
         assertTrue(IPUtil.isValidIPv6("::"));
@@ -27,6 +32,7 @@ public class IPUtilTest extends Nutlet
     /**
      * 测试isValid
      */
+    @Test
     public void testIsValid() throws Exception
     {
         assertTrue(IPUtil.isValid("::"));
@@ -37,12 +43,14 @@ public class IPUtilTest extends Nutlet
         assertFalse(IPUtil.isValid("fengyun"));
     }
 
+    @Test
     public void testToString1() throws Exception
     {
         InetAddress addr = InetAddress.getByName("1080::8:800:200C:417A");
         assertEquals("1080:0:0:0:8:800:200C:417A", IPUtil.toString(addr.getAddress()));
     }
 
+    @Test
     public void testToString2() throws Exception
     {
         InetAddress addr = InetAddress.getByName("::13.1.68.3");
@@ -52,6 +60,7 @@ public class IPUtilTest extends Nutlet
         assertEquals("13.1.68.3", IPUtil.toString(addr.getAddress()));
     }
 
+    @Test
     public void testToString3() throws Exception
     {
         InetAddress addr = InetAddress.getByName("13.1.68.3");
@@ -61,28 +70,31 @@ public class IPUtilTest extends Nutlet
     /**
      * 测试toBytes
      */
+    @Test
     public void testToBytes1() throws Exception
     {
         InetAddress addr = InetAddress.getByName("1080::8:800:200C:417A");
         byte[] bytes = addr.getAddress();
         int[] values = IPUtil.toInts(bytes);
-        assertEquals(bytes, IPUtil.toBytes(values));
+        assertArrayEquals(bytes, IPUtil.toBytes(values));
     }
 
     /**
      * 测试toBytes
      */
+    @Test
     public void testToBytes2() throws Exception
     {
         InetAddress addr = InetAddress.getByName("13.1.68.3");
         byte[] bytes = addr.getAddress();
         int[] values = IPUtil.toInts(bytes);
-        assertEquals(bytes, IPUtil.toBytes(values));
+        assertArrayEquals(bytes, IPUtil.toBytes(values));
     }
 
     /**
      * 测试toInt
      */
+    @Test
     public void testToInt() throws Exception
     {
         assertEquals(IPUtil.toInt("13.1.68.3"), IPUtil.toInt("::13.1.68.3"));

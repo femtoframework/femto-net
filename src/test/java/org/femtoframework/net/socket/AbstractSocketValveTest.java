@@ -1,7 +1,11 @@
 package org.femtoframework.net.socket;
 
-import org.bolango.tools.nutlet.Nutlet;
-import org.bolango.tools.nutlet.NutletUtil;
+import org.femtoframework.util.nutlet.NutletUtil;
+import org.junit.Test;
+
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 /**
  * 测试AbstractSocketValve
@@ -10,7 +14,7 @@ import org.bolango.tools.nutlet.NutletUtil;
  * @version 1.00 2005-1-6 18:37:23
  */
 
-public class AbstractSocketValveTest extends Nutlet
+public class AbstractSocketValveTest
 {
     private static class SimpleSocketValve extends AbstractSocketValve
     {
@@ -95,6 +99,7 @@ public class AbstractSocketValveTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetValveListener0() throws Exception
     {
         SimpleSocketValve valve = new SimpleSocketValve();
@@ -122,6 +127,7 @@ public class AbstractSocketValveTest extends Nutlet
      *
      * @throws Exception
      */
+    @Test
     public void testGetValveListener1() throws Exception
     {
         SimpleSocketValve valve = new SimpleSocketValve();
@@ -153,15 +159,16 @@ public class AbstractSocketValveTest extends Nutlet
         valve.addValveListener(listener2);
         assertTrue(valve.getValveListener() instanceof SocketValveListeners);
         SocketValveListeners listeners = (SocketValveListeners) valve.getValveListener();
-        SocketValveListener[] array = listeners.getListeners();
-        assertEquals(2, array.length);
-        assertEquals(listener1, array[0]);
-        assertEquals(listener2, array[1]);
+        List<SocketValveListener> array = listeners.getListeners();
+        assertEquals(2, array.size());
+        assertEquals(listener1, array.get(0));
+        assertEquals(listener2, array.get(1));
     }
 
     /**
      * @throws Exception
      */
+    @Test
     public void testFireValveEvent0() throws Exception
     {
         SimpleSocketValve valve = new SimpleSocketValve();
@@ -191,6 +198,7 @@ public class AbstractSocketValveTest extends Nutlet
     /**
      * @throws Exception
      */
+    @Test
     public void testFireValveEvent1() throws Exception
     {
         SimpleSocketValve valve = new SimpleSocketValve();
@@ -335,10 +343,10 @@ public class AbstractSocketValveTest extends Nutlet
         valve.addContextListener(listener2);
         assertTrue(valve.getContextListener() instanceof SocketContextListeners);
         SocketContextListeners listeners = (SocketContextListeners) valve.getContextListener();
-        SocketContextListener[] array = listeners.getListeners();
-        assertEquals(2, array.length);
-        assertEquals(listener1, array[0]);
-        assertEquals(listener2, array[1]);
+        List<SocketContextListener> array = listeners.getListeners();
+        assertEquals(2, ((List) array).size());
+        assertEquals(listener1, array.get(0));
+        assertEquals(listener2, array.get(1));
     }
 
     /**

@@ -24,7 +24,8 @@ import org.slf4j.LoggerFactory;
  * @version 1.00 2005-2-28 0:31:06
  */
 public class PoolEndpoint extends AbstractEndpoint implements SocketHandler {
-    SocketHandler handler;
+
+    protected SocketHandler handler;
 
     private ServerSocketFactory factory;
     private ServerSocket serverSocket;

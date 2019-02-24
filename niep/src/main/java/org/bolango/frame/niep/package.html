@@ -1,0 +1,41 @@
+<html>
+<body>
+<pre>
+  Neat Information Exchange Protocol
+
+  Object Type   Type Index        Description
+  null            0               Null
+  Byte            2               Byte
+  Boolean         3               Value: 1 true 0 false
+  Character       4               Value: writeChar
+  Short           5               Value: writeShort
+  Integer         6               Value: writeInteger
+  Long            7               Value: writeLong
+  Float           8               IEEE 754 floating-point "single precision" bit layout
+  Double          9               IEEE 754 floating-point "double format" bit layout
+  String          10              Size(int) + 2 * Unicode 16 Byte
+  byte[]          11              Size(int) + byte
+  char[]          12              Size(int) + (Character) * length
+  String[]        13              Size(int) + (String) * length
+  Class           15              Class Name(Ascii)
+  Externalize     16              Class Name + writeObject/readObject
+
+                                  Java org.femtoframework.test.TestBean
+                                  C    org_femtoframework_test_TestBean
+                                  C++  org:femtoframework:test:TestBean
+                                  
+  byte[]          11              Size(int) + (byte) * length
+  char[]          12              Size(int) + (char) * length
+  String[]        13              Size(int) + (String) * length
+  Object[]        17              Size(int) + (Object) * length
+  boolean[]       20              Size(int) + (boolean) * length
+  short[]         21              Size(int) + (short) * length
+  int[]           22              Size(int) + (int) * length
+  long[]          23              Size(int) + (long) * length
+  float[]         24              Size(int) + (float) * length
+  double[]        25              Size(int) + (double) * length
+  Ascii           32              Size(int) + Byte
+  Ascii[]         33              Size(int) + (Ascii) * length
+</pre>
+</body>
+</html>

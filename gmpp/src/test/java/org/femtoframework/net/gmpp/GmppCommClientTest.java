@@ -116,7 +116,7 @@ public class GmppCommClientTest
     @Test
     public void testGmppCommClient() throws Exception
     {
-        System.setProperty("system.app", "gmpp");
+        System.setProperty("cube.system.type", "gmpp");
 
         MessageRegistry registry = MessageRegistryUtil.getRegistry();
         SimpleMessageMetadata messageMetadata = new SimpleMessageMetadata();

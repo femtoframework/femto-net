@@ -28,11 +28,11 @@ public class ConnectPacket extends PacketBase
 
     private static final String DEFAULT_HOST = HostPort.getLocalHost();
     private static final int DEFAULT_PORT = HostPort.getLocalPort();
-    private static final String DEFAULT_APP = System.getProperty("system.app", "coin");
+    private static final String DEFAULT_SERVER_TYPE = System.getProperty("cube.system.type", "cube");
 
     private String host = DEFAULT_HOST;
     private int port = DEFAULT_PORT;
-    private String app = DEFAULT_APP;
+    private String serverType = DEFAULT_SERVER_TYPE;
     private String codec;
     private String secure;
     private long timestamp = System.currentTimeMillis();
@@ -143,12 +143,12 @@ public class ConnectPacket extends PacketBase
         int hostInt = toInt(host);
         CodecUtil.writeInt(pos, hostInt);
         CodecUtil.writeInt(pos, port);
-        CodecUtil.writeSingle(pos, app);
+        CodecUtil.writeSingle(pos, serverType);
         CodecUtil.writeSingle(pos, codec);
         if (version == GmppConstants.VERSION_3) {
             //Add MD5 validation
             CodecUtil.writeLong(pos, timestamp);
-            byte[] bytes = calcChecksum(hostInt, port, app, codec, timestamp);
+            byte[] bytes = calcChecksum(hostInt, port, serverType, codec, timestamp);
             pos.write(bytes);
         }
     }
@@ -166,7 +166,7 @@ public class ConnectPacket extends PacketBase
     }
 
     protected boolean isValidChecksum(int hostInt, byte[] bytes) {
-        byte[] checksum = calcChecksum(hostInt, port, app, codec, timestamp);
+        byte[] checksum = calcChecksum(hostInt, port, serverType, codec, timestamp);
         return ArrayUtil.matches(checksum, 0, bytes, 0, bytes.length);
     }
 
@@ -182,7 +182,7 @@ public class ConnectPacket extends PacketBase
         int hostInt = CodecUtil.readInt(pis);
         this.host = toString(hostInt);
         this.port = CodecUtil.readInt(pis);
-        this.app = CodecUtil.readSingle(pis);
+        this.serverType = CodecUtil.readSingle(pis);
         this.codec = CodecUtil.readSingle(pis);
         if (version == GmppConstants.VERSION_3) {
             this.timestamp = CodecUtil.readLong(pis);
@@ -199,19 +199,19 @@ public class ConnectPacket extends PacketBase
      *
      * @return 服务器类型
      */
-    public String getApp()
+    public String getServerType()
     {
-        return app;
+        return serverType;
     }
 
     /**
      * 设置服务器类型
      *
-     * @param app 服务器类型
+     * @param serverType 服务器类型
      */
-    public void setApp(String app)
+    public void setServerType(String serverType)
     {
-        this.app = app;
+        this.serverType = serverType;
     }
 
     public String getCodec()

@@ -27,7 +27,7 @@ public class InetAddressUtil
     public static InetAddress ZERO;
     private static Map<String, InetAddress> ip2Address = null;
 
-    private static final String KEY_LOCAL_HOST = "system.address";
+    private static final String KEY_LOCAL_HOST = "cube.system.address";
 
     static {
         try {

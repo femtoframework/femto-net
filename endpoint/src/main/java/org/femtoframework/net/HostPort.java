@@ -175,7 +175,7 @@ public class HostPort
         return new HostPort(sb.toString(), port);
     }
 
-    private static final String LOCAL_PORT = "system.port";
+    private static final String LOCAL_PORT = "cube.system.port";
     public static final int DEFAULT_PORT = 9168;
     public static final int MAX_TCP_PORT = 19168;
 

@@ -114,7 +114,7 @@ public class GmppConnection extends SocketConnection
                 remoteHost = response.getHost();
                 remotePort = response.getPort();
                 remoteVersion = response.getVersion();
-                remoteType = response.getApp();
+                remoteType = response.getServerType();
             }
             else {
                 throw new CommException("Can't connect to server:" + getHost()
@@ -160,7 +160,7 @@ public class GmppConnection extends SocketConnection
             remoteHost = connect.getHost();
             remotePort = connect.getPort();
             remoteVersion = version;
-            remoteType = connect.getApp();
+            remoteType = connect.getServerType();
             codec = connect.getCodec();
             setAlive(true);//设置成连接状态
         }

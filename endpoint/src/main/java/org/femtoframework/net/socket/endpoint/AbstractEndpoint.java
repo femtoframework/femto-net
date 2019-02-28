@@ -81,7 +81,7 @@ public abstract class AbstractEndpoint
     /**
      * Initialize
      */
-    public void _doInitialize()
+    public void _doInit()
     {
         if (executor == null) {
             throw new InitializeException("No thread pool configurated");

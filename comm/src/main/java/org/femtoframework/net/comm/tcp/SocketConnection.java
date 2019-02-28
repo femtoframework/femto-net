@@ -170,7 +170,7 @@ public abstract class SocketConnection extends PacketConnection
     /**
      * 初始化（如果主机地址和端口已经赋值，那么进行构建Socket的过程）
      */
-    public void _doInitialize()
+    public void _doInit()
     {
         if (host != null && port > 0) {
             try {

@@ -910,7 +910,7 @@ public class PacketCommClient
      * 初始化
      */
     @Override
-    public void _doInitialize()
+    public void _doInit()
     {
         if (isAutoConnect()) {
             autoConnector.addClient(this);

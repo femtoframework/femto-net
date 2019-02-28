@@ -73,7 +73,7 @@ public class PacketConnectionFactory implements ConnectionFactory
         }
         //是否需要初始化
         if (conn instanceof Initializable) {
-            ((Initializable) conn).initialize();
+            ((Initializable) conn).init();
         }
         return conn;
     }

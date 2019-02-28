@@ -129,7 +129,7 @@ public class GmppCommClientTest
         server.setDaemon(true);
         server.setName("simple");
         server.setPort(9776);
-        server.initialize();
+        server.init();
         server.start();
 
         final GmppCommClient client = new GmppCommClient();

@@ -76,8 +76,8 @@ public class PoolEndpoint extends AbstractEndpoint implements SocketHandler {
         return serverSocket;
     }
 
-    public void _doInitialize() {
-        super._doInitialize();
+    public void _doInit() {
+        super._doInit();
         serverSocket = createServerSocket();
     }
 

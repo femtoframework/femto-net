@@ -96,9 +96,9 @@ public class SocketChannelEndpoint extends AbstractEndpoint
     /**
      * 出始化
      */
-    public void _doInitialize()
+    public void _doInit()
     {
-        super._doInitialize();
+        super._doInit();
         if (factory == null) {
             factory = new DefaultChannelFactory();
         }

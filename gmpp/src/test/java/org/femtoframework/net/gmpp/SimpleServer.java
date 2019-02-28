@@ -45,8 +45,8 @@ public class SimpleServer
     public SimpleServer() {
     }
 
-    public void _doInitialize() {
-        super._doInitialize();
+    public void _doInit() {
+        super._doInit();
 
         try {
             server = new ServerSocket(port);

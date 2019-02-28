@@ -158,7 +158,7 @@ public class MessageCommClient extends PacketCommClient
     {
         if (window != null) {
             if (window instanceof Lifecycle) {
-                ((Lifecycle) window).initialize();
+                ((Lifecycle) window).init();
                 ((Lifecycle) window).start();
             }
         }

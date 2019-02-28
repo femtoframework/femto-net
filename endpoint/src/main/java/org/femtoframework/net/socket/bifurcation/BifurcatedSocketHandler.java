@@ -37,7 +37,7 @@ public abstract class BifurcatedSocketHandler
     }
 
 
-    public void _doInitialize()
+    public void _doInit()
     {
         if (bifurcation == 0) {
             throw new InitializeException("No scheme set");

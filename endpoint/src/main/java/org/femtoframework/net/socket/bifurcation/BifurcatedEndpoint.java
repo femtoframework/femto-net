@@ -56,9 +56,9 @@ public class BifurcatedEndpoint extends PoolEndpoint
     /**
      * 初始化实现
      */
-    public void _doInitialize()
+    public void _doInit()
     {
-        super._doInitialize();
+        super._doInit();
 
         this.handler = dispatcher;
     }

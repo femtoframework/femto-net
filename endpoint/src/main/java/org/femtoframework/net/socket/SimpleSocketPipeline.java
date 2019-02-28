@@ -196,9 +196,9 @@ public class SimpleSocketPipeline
     /**
      * Initialize internally
      */
-    public void _doInitialize() {
+    public void _doInit() {
         if (closeHandler instanceof Initializable) {
-            ((Initializable)closeHandler).initialize();
+            ((Initializable)closeHandler).init();
         }
     }
 

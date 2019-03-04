@@ -1,6 +1,6 @@
 package org.femtoframework.net.comm.packet;
 
-import org.femtoframework.net.comm.CommUtil;
+import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.Connection;
 import org.femtoframework.util.queue.Queue;
 import org.femtoframework.util.thread.LifecycleThread;
@@ -99,7 +99,7 @@ public class PacketWriterThread
         }
         catch (Exception e) {
             if (handleException(e)) {
-                CommUtil.close(conn);
+                IOUtil.close(conn);
             }
             throw e;
         }

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.femtoframework.bean.InitializableMBean;
+import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.*;
 import org.femtoframework.lang.reflect.Reflection;
 import org.femtoframework.parameters.Parameters;
@@ -225,7 +226,7 @@ public class PacketCommClient
                 synchronized (connections) {
                     connections.remove(i);
                 }
-                CommUtil.close(conn);
+                IOUtil.close(conn);
             }
         }
 
@@ -241,7 +242,7 @@ public class PacketCommClient
             catch (IOException ioe) {
                 logger.warn("Can't create connection", ioe);
                 //连接异常，关闭连接，使Socket和线程得以释放
-                CommUtil.close(conn);
+                IOUtil.close(conn);
             }
         }
         return liveCount;
@@ -282,7 +283,7 @@ public class PacketCommClient
             List<ThreadConnection> copy = new ArrayList<>(connections);
             for (int i = 0, size = copy.size(); i < size; i++) {
                 ThreadConnection conn = copy.get(i);
-                CommUtil.close(conn);
+                IOUtil.close(conn);
             }
 
             setStatus(STATUS_CLOSED);
@@ -347,10 +348,8 @@ public class PacketCommClient
                 for (int i = size - 1; i >= 0; i--) {
                     ThreadConnection thread = connections.get(i);
                     if (thread.equals(conn)) {
-
-                            connections.remove(i);
-
-                        CommUtil.close(thread);
+                        connections.remove(i);
+                        IOUtil.close(thread);
                         if (connections.isEmpty()) { //暂时没有连接并不代表服务器死了
                             logger.warn("No connection alive");
                             //等待若干秒

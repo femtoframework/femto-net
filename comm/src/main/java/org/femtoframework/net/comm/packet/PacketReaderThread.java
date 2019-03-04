@@ -1,6 +1,6 @@
 package org.femtoframework.net.comm.packet;
 
-import org.femtoframework.net.comm.CommUtil;
+import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.Packet;
 import org.femtoframework.net.comm.PacketListener;
 import org.femtoframework.net.comm.PacketProtocol;
@@ -64,7 +64,7 @@ public class PacketReaderThread extends LifecycleThread
         }
         catch (Exception e) {
             if (handleException(e)) {
-                CommUtil.close(protocol);
+                IOUtil.close(protocol);
             }
             throw e;
         }

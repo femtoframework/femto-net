@@ -2,8 +2,8 @@ package org.femtoframework.net.comm.packet;
 
 import java.io.IOException;
 
+import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.AbstractConnection;
-import org.femtoframework.net.comm.CommUtil;
 import org.femtoframework.net.comm.Packet;
 import org.femtoframework.net.comm.PacketProtocol;
 import org.femtoframework.net.comm.ParametersAware;
@@ -86,7 +86,7 @@ public abstract class PacketConnection extends AbstractConnection
     protected void doClose() throws IOException
     {
         parameters = null;
-        CommUtil.close(protocol);
+        IOUtil.close(protocol);
         protocol = null;
     }
 

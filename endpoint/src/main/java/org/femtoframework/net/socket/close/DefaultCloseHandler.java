@@ -1,7 +1,6 @@
 package org.femtoframework.net.socket.close;
 
-import org.femtoframework.bean.BeanPhase;
-import org.femtoframework.bean.LifecycleMBean;
+import org.femtoframework.bean.AbstractLifecycle;
 import org.femtoframework.util.SortedList;
 
 import java.net.Socket;
@@ -14,7 +13,8 @@ import java.util.Comparator;
  * @version 1.00 Oct 23, 2003 6:21:08 PM
  */
 public class DefaultCloseHandler
-    implements CloseHandler, Comparator<SocketCart>, LifecycleMBean, Runnable
+    extends AbstractLifecycle
+    implements CloseHandler, Comparator<SocketCart>, Runnable
 {
     public static final int DEFAULT_SLEEP_TIME = 1000;
 
@@ -98,25 +98,4 @@ public class DefaultCloseHandler
         return (int)(o1.timestamp - o2.timestamp);
     }
 
-    private BeanPhase phase = BeanPhase.DISABLED;
-
-    /**
-     * Implement method of getPhase
-     *
-     * @return BeanPhase
-     */
-    @Override
-    public BeanPhase _doGetPhase() {
-        return phase;
-    }
-
-    /**
-     * Phase setter for internal
-     *
-     * @param phase BeanPhase
-     */
-    @Override
-    public void _doSetPhase(BeanPhase phase) {
-        this.phase = phase;
-    }
 }

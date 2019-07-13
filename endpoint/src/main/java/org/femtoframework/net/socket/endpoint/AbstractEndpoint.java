@@ -5,8 +5,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.concurrent.Executor;
 
-import org.femtoframework.bean.BeanPhase;
-import org.femtoframework.bean.LifecycleMBean;
+import org.femtoframework.bean.AbstractLifecycle;
 import org.femtoframework.bean.exception.InitializeException;
 import org.femtoframework.net.socket.SocketEndpoint;
 
@@ -17,7 +16,8 @@ import org.femtoframework.net.socket.SocketEndpoint;
  * @version 1.00 2005-2-28 0:26:21
  */
 public abstract class AbstractEndpoint
-    implements SocketEndpoint, Executor, LifecycleMBean
+    extends AbstractLifecycle
+    implements SocketEndpoint, Executor
 {
     private static final int BACKLOG = 500;
     private static final int TIMEOUT = 60000;
@@ -247,27 +247,5 @@ public abstract class AbstractEndpoint
     public void setExecutor(Executor executor)
     {
         this.executor = executor;
-    }
-
-    private BeanPhase phase = BeanPhase.DISABLED;
-
-    /**
-     * Implement method of getPhase
-     *
-     * @return BeanPhase
-     */
-    @Override
-    public BeanPhase _doGetPhase() {
-        return phase;
-    }
-
-    /**
-     * Phase setter for internal
-     *
-     * @param phase BeanPhase
-     */
-    @Override
-    public void _doSetPhase(BeanPhase phase) {
-        this.phase = phase;
     }
 }

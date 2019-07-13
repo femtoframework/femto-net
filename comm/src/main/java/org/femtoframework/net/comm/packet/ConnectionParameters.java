@@ -4,11 +4,9 @@ import org.femtoframework.bean.info.BeanInfo;
 import org.femtoframework.bean.info.BeanInfoUtil;
 import org.femtoframework.bean.info.PropertyInfo;
 import org.femtoframework.parameters.Parameters;
+import org.femtoframework.text.NamingConvention;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 连接参数代理，从CommClient对象中获取参数（相比较BeanParameters带有自动Cache的功能）
@@ -92,6 +90,16 @@ public class ConnectionParameters extends AbstractMap<String, Object> implements
 
     @Override
     public Set<Entry<String, Object>> entrySet() {
-        throw new UnsupportedOperationException();
+        HashMap<String, Object> allEntries = new HashMap<>();
+        allEntries.putAll(extra);
+        Collection<PropertyInfo> properties = beanInfo.getProperties();
+        if (properties != null && !properties.isEmpty()) {
+            for(PropertyInfo propertyInfo : properties) {
+                String name = propertyInfo.getName();
+                Object value = propertyInfo.invokeGetter(client);
+                allEntries.put(NamingConvention.format(name), value);
+            }
+        }
+        return allEntries.entrySet();
     }
 }

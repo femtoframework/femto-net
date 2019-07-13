@@ -17,7 +17,8 @@ import java.util.List;
  * @version 1.00 Aug 8, 2003 6:55:34 PM
  */
 public class SimpleSocketPipeline
-    implements SocketPipeline, SocketEndpointAware, LifecycleMBean
+    extends AbstractLifecycle
+    implements SocketPipeline, SocketEndpointAware
 {
     private String name;
 
@@ -169,29 +170,6 @@ public class SimpleSocketPipeline
     public void setCloseHandler(CloseHandler closeHandler) {
         this.closeHandler = closeHandler;
     }
-
-    private BeanPhase phase = BeanPhase.DISABLED;
-
-    /**
-     * Implement method of getPhase
-     *
-     * @return BeanPhase
-     */
-    @Override
-    public BeanPhase _doGetPhase() {
-        return phase;
-    }
-
-    /**
-     * Phase setter for internal
-     *
-     * @param phase BeanPhase
-     */
-    @Override
-    public void _doSetPhase(BeanPhase phase) {
-        this.phase = phase;
-    }
-
 
     /**
      * Initialize internally

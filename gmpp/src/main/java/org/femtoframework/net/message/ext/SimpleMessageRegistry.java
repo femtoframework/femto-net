@@ -81,8 +81,8 @@ public class SimpleMessageRegistry implements MessageRegistry
                 }
 
                 int type = parameters.getInt(str + ".type", -1);
-                String clazz = parameters.getString("class", null);
-                String listener = parameters.getString("listener", null);
+                String clazz = parameters.getString(str + ".class", null);
+                String listener = parameters.getString(str + ".listener", null);
                 if (type == -1 || clazz == null || listener == null) {
                     logger.warn("ingnore invalid message registry:" + str);
                     continue;

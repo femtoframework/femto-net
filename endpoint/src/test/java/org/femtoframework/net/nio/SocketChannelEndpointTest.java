@@ -54,7 +54,7 @@ public class SocketChannelEndpointTest
     public void testSetHandler() throws Exception
     {
         SocketChannelEndpoint endpoint = new SocketChannelEndpoint();
-        endpoint.setPort(8888);
+        endpoint.setPort(48888);
         endpoint.setHandler(new SocketChannelHandler()
         {
 

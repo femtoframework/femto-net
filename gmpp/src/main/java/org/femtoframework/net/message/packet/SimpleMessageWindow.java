@@ -1,8 +1,8 @@
 package org.femtoframework.net.message.packet;
 
+import org.femtoframework.bean.AbstractLifecycle;
 import org.femtoframework.bean.BeanPhase;
 import org.femtoframework.bean.Destroyable;
-import org.femtoframework.bean.LifecycleMBean;
 import org.femtoframework.net.message.MessageWindow;
 import org.femtoframework.net.message.Timeoutable;
 import org.femtoframework.util.thread.ExecutorUtil;
@@ -21,8 +21,8 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author fengyun
  * @version 1.00 2005-5-21 21:08:04
  */
-public class SimpleMessageWindow<M>
-    implements MessageWindow<M>, Runnable, LifecycleMBean
+public class SimpleMessageWindow<M> extends AbstractLifecycle
+    implements MessageWindow<M>, Runnable
 {
     public static final int DEFAULT_MAX_SIZE = 512;
 
@@ -213,27 +213,5 @@ public class SimpleMessageWindow<M>
                 logger.warn("recycle message error", e);
             }
         }
-    }
-
-    private BeanPhase beanPhase = BeanPhase.DISABLED;
-
-    /**
-     * Implement method of getPhase
-     *
-     * @return BeanPhase
-     */
-    @Override
-    public BeanPhase _doGetPhase() {
-        return beanPhase;
-    }
-
-    /**
-     * Phase setter for internal
-     *
-     * @param phase BeanPhase
-     */
-    @Override
-    public void _doSetPhase(BeanPhase phase) {
-        this.beanPhase = phase;
     }
 }

@@ -74,7 +74,9 @@ public abstract class PacketConnection extends AbstractConnection
      */
     public void writePacket(Packet packet) throws IOException
     {
-        protocol.writePacket(packet);
+        if (protocol != null) {
+            protocol.writePacket(packet);
+        }
     }
 
     /**

@@ -26,13 +26,14 @@ public class ConnectPacket extends PacketBase
 {
     private byte version;
 
-    private static final String DEFAULT_HOST = HostPort.getLocalHost();
-    private static final int DEFAULT_PORT = HostPort.getLocalPort();
-    private static final String DEFAULT_SERVER_TYPE = System.getProperty("cube.system.type", "cube");
+    private static String DEFAULT_HOST;
+    private static int DEFAULT_PORT;
+
+    private static String DEFAULT_SERVER_TYPE;
 
     private String host = DEFAULT_HOST;
     private int port = DEFAULT_PORT;
-    private String serverType = DEFAULT_SERVER_TYPE;
+    private String serverType;
     private String codec;
     private String secure;
     private long timestamp = System.currentTimeMillis();
@@ -61,6 +62,12 @@ public class ConnectPacket extends PacketBase
 
     public String getHost()
     {
+        if (host == null) {
+            if (DEFAULT_HOST == null) {
+                DEFAULT_HOST = HostPort.getLocalHost();
+            }
+            host = DEFAULT_HOST;
+        }
         return host;
     }
 
@@ -71,6 +78,12 @@ public class ConnectPacket extends PacketBase
 
     public int getPort()
     {
+        if (port == 0) {
+            if (DEFAULT_PORT == 0) {
+                DEFAULT_PORT = HostPort.getLocalPort();
+            }
+            port = DEFAULT_PORT;
+        }
         return port;
     }
 
@@ -140,15 +153,15 @@ public class ConnectPacket extends PacketBase
         throws IOException
     {
         CodecUtil.writeByte(pos, version);
-        int hostInt = toInt(host);
+        int hostInt = toInt(getHost());
         CodecUtil.writeInt(pos, hostInt);
-        CodecUtil.writeInt(pos, port);
-        CodecUtil.writeSingle(pos, serverType);
+        CodecUtil.writeInt(pos, getPort());
+        CodecUtil.writeSingle(pos, getServerType());
         CodecUtil.writeSingle(pos, codec);
         if (version == GmppConstants.VERSION_3) {
             //Add MD5 validation
             CodecUtil.writeLong(pos, timestamp);
-            byte[] bytes = calcChecksum(hostInt, port, serverType, codec, timestamp);
+            byte[] bytes = calcChecksum(hostInt, getPort(), getServerType(), codec, timestamp);
             pos.write(bytes);
         }
     }
@@ -166,7 +179,7 @@ public class ConnectPacket extends PacketBase
     }
 
     protected boolean isValidChecksum(int hostInt, byte[] bytes) {
-        byte[] checksum = calcChecksum(hostInt, port, serverType, codec, timestamp);
+        byte[] checksum = calcChecksum(hostInt, getPort(), getServerType(), codec, timestamp);
         return ArrayUtil.matches(checksum, 0, bytes, 0, bytes.length);
     }
 
@@ -201,6 +214,12 @@ public class ConnectPacket extends PacketBase
      */
     public String getServerType()
     {
+        if (serverType == null) {
+            if (DEFAULT_SERVER_TYPE == null) {
+                DEFAULT_SERVER_TYPE = System.getProperty("cube.system.type", "cube");
+            }
+            serverType = DEFAULT_SERVER_TYPE;
+        }
         return serverType;
     }
 

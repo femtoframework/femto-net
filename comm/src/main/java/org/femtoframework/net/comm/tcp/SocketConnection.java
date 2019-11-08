@@ -237,12 +237,13 @@ public abstract class SocketConnection extends PacketConnection
             logger.warn("Can't connect to " + host + ":" + port + " (" + ce.getMessage() + ")");
         }
         catch (NoRouteToHostException ne) {
-            logger.warn("No route to host " + host + ":" + port, ne);
+            if (logger.isDebugEnabled()) {
+                logger.debug("No route to host " + host + ":" + port);
+            }
         }
         catch (Throwable e) {
             if (logger.isDebugEnabled()) {
-                logger.debug("Connection broken! When connect to "
-                          + host + ":" + port, e);
+                logger.debug("Connection broken! When connect to " + host + ":" + port, e);
             }
         }
         return socket;

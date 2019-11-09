@@ -271,12 +271,13 @@ public class PacketCommClient
      */
     public void close() throws IOException
     {
+        //Remove from autoConnector anyway
+        if (isAutoConnect()) {
+            autoConnector.removeClient(this);
+        }
+
         if (status != STATUS_CLOSED) {
             this.status = STATUS_CLOSED;
-
-            if (isAutoConnect()) {
-                autoConnector.removeClient(this);
-            }
 
             doClose();
 

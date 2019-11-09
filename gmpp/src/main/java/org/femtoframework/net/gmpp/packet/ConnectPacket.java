@@ -33,7 +33,10 @@ public class ConnectPacket extends PacketBase
 
     private String host = DEFAULT_HOST;
     private int port = DEFAULT_PORT;
+
+    // Server Type of current server
     private String serverType;
+    
     private String codec;
     private String secure;
     private long timestamp = System.currentTimeMillis();

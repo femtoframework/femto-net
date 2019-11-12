@@ -1,10 +1,12 @@
 package org.femtoframework.net.comm.packet;
 
 import java.io.IOException;
+import java.net.NoRouteToHostException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.femtoframework.bean.InitializableMBean;
+import org.femtoframework.bean.exception.InitializeException;
 import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.*;
 import org.femtoframework.lang.reflect.Reflection;
@@ -239,10 +241,21 @@ public class PacketCommClient
                 logger.info("Connection created:" + conn);
                 liveCount++;
             }
-            catch (IOException ioe) {
-                logger.warn("Can't create connection", ioe);
-                //连接异常，关闭连接，使Socket和线程得以释放
+            catch (IOException ex) {
+                logger.warn("Can't create connection", ex);
                 IOUtil.close(conn);
+            }
+            catch (InitializeException ie) {
+                Throwable cause = ie.getCause();
+                if (cause instanceof NoRouteToHostException) {
+                    logger.warn("No Route To Host Exception", cause);
+                    //The client should be closed
+                    close();
+                }
+                else {
+                    logger.warn("Can't create connection", ie);
+                    IOUtil.close(conn);
+                }
             }
         }
         return liveCount;

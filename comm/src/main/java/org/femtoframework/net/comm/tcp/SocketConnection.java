@@ -183,7 +183,7 @@ public abstract class SocketConnection extends PacketConnection
                 }
             }
             catch (IOException e) {
-                throw new InitializeException("Can't create socket to:[" + host + ":" + port + "]");
+                throw new InitializeException("Can't create socket to:[" + host + ":" + port + "]", e);
             }
         }
     }
@@ -240,6 +240,7 @@ public abstract class SocketConnection extends PacketConnection
             if (logger.isDebugEnabled()) {
                 logger.debug("No route to host " + host + ":" + port);
             }
+            throw ne;
         }
         catch (Throwable e) {
             if (logger.isDebugEnabled()) {

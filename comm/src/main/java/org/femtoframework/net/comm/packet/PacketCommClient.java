@@ -248,7 +248,7 @@ public class PacketCommClient
             catch (InitializeException ie) {
                 Throwable cause = ie.getCause();
                 if (cause instanceof NoRouteToHostException) {
-                    logger.warn("No Route To Host Exception", cause);
+                    logger.warn("No Route To Host Exception, closing this client...." + cause.getMessage());
                     //The client should be closed
                     close();
                 }

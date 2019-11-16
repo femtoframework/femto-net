@@ -7,6 +7,9 @@ import java.util.List;
 
 import org.femtoframework.bean.InitializableMBean;
 import org.femtoframework.bean.exception.InitializeException;
+import org.femtoframework.coin.metrics.annotations.Metric;
+import org.femtoframework.coin.metrics.annotations.MetricType;
+import org.femtoframework.coin.metrics.annotations.Tag;
 import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.*;
 import org.femtoframework.lang.reflect.Reflection;
@@ -479,9 +482,33 @@ public class PacketCommClient
      *
      * @return 连接数
      */
+    @Metric(type= MetricType.GAUGE,
+     name="femto_comm_client_connection_count",
+    description = "Client connection count",
+    tags = {
+            @Tag(name="host", value="${host}"),
+            @Tag(name="port", value="${port}")
+    })
     public int getConnCount()
     {
         return connections.size();
+    }
+
+
+    /**
+     * Return queue size of this client
+     *
+     * @return Queue Size
+     */
+    @Metric(type= MetricType.GAUGE,
+            name="femto_comm_client_queue_size",
+            description = "Client queue size",
+            tags = {
+                    @Tag(name="host", value="${host}"),
+                    @Tag(name="port", value="${port}")
+            })
+    public int getQueueSize() {
+        return queue.size();
     }
 
     /**

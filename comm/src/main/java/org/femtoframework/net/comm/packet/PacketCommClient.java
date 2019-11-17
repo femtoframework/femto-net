@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.femtoframework.bean.InitializableMBean;
+import org.femtoframework.bean.annotation.Property;
 import org.femtoframework.bean.exception.InitializeException;
 import org.femtoframework.coin.metrics.annotations.Metric;
 import org.femtoframework.coin.metrics.annotations.MetricType;
@@ -489,6 +490,7 @@ public class PacketCommClient
             @Tag(name="host", value="${host}"),
             @Tag(name="port", value="${port}")
     })
+    @Property
     public int getConnCount()
     {
         return connections.size();
@@ -507,6 +509,7 @@ public class PacketCommClient
                     @Tag(name="host", value="${host}"),
                     @Tag(name="port", value="${port}")
             })
+    @Property
     public int getQueueSize() {
         return queue.size();
     }
@@ -516,6 +519,14 @@ public class PacketCommClient
      *
      * @return 允许连接的最大连接数
      */
+    @Metric(type= MetricType.GAUGE,
+            name="femto_comm_client_max_connection_count",
+            description = "Client maximum connection count",
+            tags = {
+                    @Tag(name="host", value="${host}"),
+                    @Tag(name="port", value="${port}")
+            })
+    @Property
     public int getMaxConnCount()
     {
         return maxConnCount;

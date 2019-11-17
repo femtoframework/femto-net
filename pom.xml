@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.femtoframework.util</groupId>
         <artifactId>femto-parent</artifactId>
-        <version>7.0.4-SNAPSHOT</version>
+        <version>7.1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -28,6 +28,16 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>1.18.6</version>
+            </dependency>
+            <dependency>
+                <groupId>org.femtoframework.net</groupId>
+                <artifactId>femto-comm</artifactId>
+                <version>7.0.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.femtoframework.net</groupId>
+                <artifactId>femto-endpoint</artifactId>
+                <version>7.0.0-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

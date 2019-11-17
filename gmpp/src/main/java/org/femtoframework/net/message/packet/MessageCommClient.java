@@ -2,6 +2,7 @@ package org.femtoframework.net.message.packet;
 
 
 import org.femtoframework.bean.Lifecycle;
+import org.femtoframework.bean.annotation.Property;
 import org.femtoframework.coin.metrics.annotations.Metric;
 import org.femtoframework.coin.metrics.annotations.MetricType;
 import org.femtoframework.coin.metrics.annotations.Tag;
@@ -154,6 +155,7 @@ public class MessageCommClient extends PacketCommClient
                     @Tag(name="host", value="${host}"),
                     @Tag(name="port", value="${port}")
             })
+    @Property
     public int getWindowSize() {
         return window.getMessageCount();
     }
@@ -170,6 +172,7 @@ public class MessageCommClient extends PacketCommClient
                     @Tag(name="host", value="${host}"),
                     @Tag(name="port", value="${port}")
             })
+    @Property
     public int getMaxWindowSize() {
         return window.getMaxCount();
     }

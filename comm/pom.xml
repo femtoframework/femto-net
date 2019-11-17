@@ -19,7 +19,7 @@
         <dependency>
             <groupId>org.femtoframework.coin</groupId>
             <artifactId>coin-metrics</artifactId>
-            <version>7.1.1-SNAPSHOT</version>
+            <version>7.2.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

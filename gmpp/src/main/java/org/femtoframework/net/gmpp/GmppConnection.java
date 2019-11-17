@@ -28,7 +28,7 @@ public class GmppConnection extends SocketConnection
     private byte remoteVersion;
     private String remoteType;
     private String codec = "apsis";
-    private String secure = "AirProceWeStartedFrom2014";
+    private String secure = "";
     private byte localVersion = GmppConstants.VERSION;
 
     /**

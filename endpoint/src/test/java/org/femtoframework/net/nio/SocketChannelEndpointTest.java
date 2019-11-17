@@ -8,6 +8,7 @@ import org.femtoframework.bean.Startable;
 import org.femtoframework.io.IOUtil;
 import org.femtoframework.util.nutlet.NutletUtil;
 import org.femtoframework.util.thread.ExecutorUtil;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -78,7 +79,7 @@ public class SocketChannelEndpointTest
         endpoint.setExecutor(executor);
         endpoint.start();
 
-        Socket socket = new Socket("127.0.0.1", 8888);
+        Socket socket = new Socket("127.0.0.1", 48888);
         socket.getInputStream();
         IOUtil.close(socket);
 

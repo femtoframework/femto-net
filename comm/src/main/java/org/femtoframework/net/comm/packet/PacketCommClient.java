@@ -257,7 +257,7 @@ public class PacketCommClient
                     close();
                 }
                 else {
-                    logger.warn("Can't create connection", ie);
+                    logger.warn("Can't create connection:" + ie.getMessage());
                     IOUtil.close(conn);
                 }
             }

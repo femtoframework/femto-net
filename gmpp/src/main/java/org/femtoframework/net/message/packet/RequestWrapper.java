@@ -124,7 +124,7 @@ public class RequestWrapper
             }
         }
         if (response == null) {
-            throw new RequestTimeoutException("Timeout");
+            throw new RequestTimeoutException("Start time:" + startTime + " timeout:" + timeout);
         }
         Object result = doGetResponse();
         if (result instanceof RequestTimeoutException) {

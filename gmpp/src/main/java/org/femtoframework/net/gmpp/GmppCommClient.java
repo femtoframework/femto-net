@@ -43,7 +43,7 @@ public class GmppCommClient extends MessageCommClient
     private int remotePort;
 
     /**
-     * GMPP版本号
+     * GMPP版本号, Server preferred version
      */
     private byte remoteVersion;
 
@@ -61,6 +61,9 @@ public class GmppCommClient extends MessageCommClient
      * 对象编码解码器名称
      */
     private String codec;
+
+
+    private byte localVersion;
 
     /**
      * 构造
@@ -261,5 +264,16 @@ public class GmppCommClient extends MessageCommClient
     public void setRemoteType(String remoteType)
     {
         this.remoteType = remoteType;
+    }
+
+    /**
+     * Local Preferred version
+     */
+    public byte getLocalVersion() {
+        return localVersion;
+    }
+
+    public void setLocalVersion(byte localVersion) {
+        this.localVersion = localVersion;
     }
 }

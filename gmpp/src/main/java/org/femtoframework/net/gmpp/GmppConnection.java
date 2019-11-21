@@ -29,7 +29,7 @@ public class GmppConnection extends SocketConnection
     private String remoteType;
     private String codec = "apsis";
     private String secure = "";
-    private byte localVersion = GmppConstants.VERSION;
+    private byte localVersion = GmppConstants.VERSION_3;
 
     /**
      * 返回远程主机

@@ -22,7 +22,7 @@ public class SimpleServer
     private Logger log = LoggerFactory.getLogger("gmpp/simple/socket/handler");
 
 
-    private byte[] supportedVersions = new byte[]{GmppConstants.VERSION};
+    private byte[] supportedVersions = new byte[]{GmppConstants.VERSION_3};
 
     private HashSet<String> supportedCodecs = new HashSet<String>();
 

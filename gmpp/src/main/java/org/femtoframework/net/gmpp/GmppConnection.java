@@ -238,6 +238,8 @@ public class GmppConnection extends SocketConnection
     {
         super.setParameters(parameters);
         codec = parameters.getString("codec");
+        secure = parameters.getString("secure", "");
+        localVersion = (byte)parameters.getInt("local_version", localVersion);
     }
 
     /**

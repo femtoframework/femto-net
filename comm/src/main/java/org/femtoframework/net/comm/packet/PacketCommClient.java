@@ -13,7 +13,6 @@ import org.femtoframework.coin.metrics.annotations.MetricType;
 import org.femtoframework.coin.metrics.annotations.Tag;
 import org.femtoframework.io.IOUtil;
 import org.femtoframework.net.comm.*;
-import org.femtoframework.lang.reflect.Reflection;
 import org.femtoframework.parameters.Parameters;
 import org.femtoframework.pattern.Loggable;
 import org.femtoframework.util.queue.LinkedQueue;
@@ -144,6 +143,11 @@ public class PacketCommClient
      * 协议类
      */
     private Class protocolClass;
+
+
+    private int connectionTimeout = 30000;
+
+    private int soTimeout = 60000;
 
     /**
      * 构造
@@ -987,5 +991,21 @@ public class PacketCommClient
     @Override
     public void _doSetInitialized(boolean initialized) {
         this.initialized = initialized;
+    }
+
+    public int getConnectionTimeout() {
+        return connectionTimeout;
+    }
+
+    public void setConnectionTimeout(int connectionTimeout) {
+        this.connectionTimeout = connectionTimeout;
+    }
+
+    public int getSoTimeout() {
+        return soTimeout;
+    }
+
+    public void setSoTimeout(int soTimeout) {
+        this.soTimeout = soTimeout;
     }
 }

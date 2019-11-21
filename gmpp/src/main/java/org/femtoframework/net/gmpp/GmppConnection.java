@@ -14,6 +14,7 @@ import org.femtoframework.net.gmpp.packet.ConnectRepPacket;
 import org.femtoframework.net.gmpp.packet.PingPacket;
 import org.femtoframework.net.gmpp.packet.PingRepPacket;
 import org.femtoframework.parameters.Parameters;
+import org.femtoframework.util.StringUtil;
 
 /**
  * Gmpp连接实现
@@ -105,6 +106,9 @@ public class GmppConnection extends SocketConnection
         //发送客户端编码解码信息
         connect.setVersion(localVersion);
         connect.setCodec(codec);
+        if (StringUtil.isInvalid(secure) {
+            secure = System.getenv("FEMTO_NET_GMPP_SECURE");
+        }
         connect.setSecure(secure);
         writePacket(connect);
         Packet packet = readPacket();

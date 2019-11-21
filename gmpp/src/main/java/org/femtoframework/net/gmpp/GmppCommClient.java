@@ -60,7 +60,7 @@ public class GmppCommClient extends MessageCommClient
     /**
      * 对象编码解码器名称
      */
-    private String codecName;
+    private String codec;
 
     /**
      * 构造
@@ -81,7 +81,7 @@ public class GmppCommClient extends MessageCommClient
      */
     public String getCodec()
     {
-        return codecName;
+        return codec;
     }
 
     /**
@@ -91,7 +91,7 @@ public class GmppCommClient extends MessageCommClient
      */
     public void setCodec(String codec)
     {
-        this.codecName = codec;
+        this.codec = codec;
         this.objectCodec = ObjectCodecUtil.getObjectCodec(codec);
     }
 

@@ -106,9 +106,6 @@ public class GmppConnection extends SocketConnection
         //发送客户端编码解码信息
         connect.setVersion(localVersion);
         connect.setCodec(codec);
-        if (StringUtil.isInvalid(secure)) {
-            secure = System.getenv("FEMTO_NET_GMPP_SECURE");
-        }
         connect.setSecure(secure);
         writePacket(connect);
         Packet packet = readPacket();
@@ -237,8 +234,8 @@ public class GmppConnection extends SocketConnection
     public void setParameters(Parameters parameters)
     {
         super.setParameters(parameters);
-        codec = parameters.getString("codec");
-        secure = parameters.getString("secure", "");
+        codec = parameters.getString("codec", codec);
+        secure = parameters.getString("secure", secure);
         localVersion = (byte)parameters.getInt("local_version", localVersion);
     }
 

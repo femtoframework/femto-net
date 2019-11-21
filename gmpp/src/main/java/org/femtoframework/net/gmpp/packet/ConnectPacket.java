@@ -13,6 +13,7 @@ import org.femtoframework.net.gmpp.GmppConstants;
 import org.femtoframework.lang.Binary;
 import org.femtoframework.util.ArrayUtil;
 import org.femtoframework.util.DataUtil;
+import org.femtoframework.util.StringUtil;
 import org.femtoframework.util.crypto.Hex;
 import org.femtoframework.util.crypto.MD5;
 
@@ -177,7 +178,7 @@ public class ConnectPacket extends PacketBase
         buffer.append(serverType.getBytes());
         buffer.append(port);
         buffer.append(hostInt);
-        buffer.append(secure.getBytes());
+        buffer.append(getSecure().getBytes());
         return MD5.encrypt(buffer.getValue(), 0, buffer.length());
     }
 
@@ -247,6 +248,15 @@ public class ConnectPacket extends PacketBase
     }
 
     public String getSecure() {
+        if (StringUtil.isInvalid(secure)) {
+            String secureEnv = System.getenv("FEMTO_NET_GMPP_SECURE");
+            if (secureEnv != null) {
+                secure = secureEnv;
+            }
+            if (secure == null) {
+                secure = "";
+            }
+        }
         return secure;
     }
 

@@ -833,15 +833,15 @@ public class PacketCommClient
         this.connectionClass = connectionClass;
     }
 
-    /**
-     * 设置连接对应的类
-     *
-     * @param connectionClass
-     */
-    public void setConnectionClass(String connectionClass) throws ClassNotFoundException
-    {
-        setConnectionClass(Reflection.loadClass(connectionClass));
-    }
+//    /**
+//     * 设置连接对应的类
+//     *
+//     * @param connectionClass
+//     */
+//    public void setConnectionClass(String connectionClass) throws ClassNotFoundException
+//    {
+//        setConnectionClass(Reflection.loadClass(connectionClass));
+//    }
 
     /**
      * 返回协议类
@@ -863,15 +863,15 @@ public class PacketCommClient
         this.protocolClass = protocolClass;
     }
 
-    /**
-     * 设置协议类
-     *
-     * @param protocolClass
-     */
-    public void setProtocolClass(String protocolClass) throws ClassNotFoundException
-    {
-        setProtocolClass(Reflection.loadClass(protocolClass));
-    }
+//    /**
+//     * 设置协议类
+//     *
+//     * @param protocolClass
+//     */
+//    public void setProtocolClass(String protocolClass) throws ClassNotFoundException
+//    {
+//        setProtocolClass(Reflection.loadClass(protocolClass));
+//    }
 
     /**
      * 设置新的属性集合

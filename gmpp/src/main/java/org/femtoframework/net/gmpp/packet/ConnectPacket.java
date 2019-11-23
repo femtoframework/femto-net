@@ -25,7 +25,7 @@ import org.femtoframework.util.crypto.MD5;
  */
 public class ConnectPacket extends PacketBase
 {
-    private byte version;
+    private byte version = GmppConstants.VERSION_3;
 
     private static String DEFAULT_HOST;
     private static int DEFAULT_PORT;

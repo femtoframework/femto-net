@@ -16,6 +16,8 @@ import org.femtoframework.net.gmpp.packet.PingRepPacket;
 import org.femtoframework.parameters.Parameters;
 import org.femtoframework.util.StringUtil;
 
+import static org.femtoframework.net.gmpp.GmppConstants.SC_INVALID_SECURE;
+
 /**
  * Gmpp连接实现
  *
@@ -153,6 +155,12 @@ public class GmppConnection extends SocketConnection
                 }
                 else {
                     response.setCodec(codec);
+
+                    if (version == GmppConstants.VERSION_3) {
+                        if (!connect.isValidChecksum()) {
+                            response.setStatus(SC_INVALID_SECURE);
+                        }
+                    }
                 }
             }
             writePacket(response);

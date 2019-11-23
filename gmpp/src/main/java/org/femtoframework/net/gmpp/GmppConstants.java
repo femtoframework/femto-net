@@ -28,6 +28,11 @@ public interface GmppConstants
     int SC_UNSUPPORTED_CODEC = 302;
 
     /**
+     * Invalid secure code
+     */
+    int SC_INVALID_SECURE = 303;
+
+    /**
      * 没有数据，忽略
      */
     int PACKET_NONE = 0;

@@ -63,7 +63,7 @@ public class GmppCommClient extends MessageCommClient
     private String codec;
 
 
-    private byte localVersion;
+    private byte localVersion = GmppConstants.VERSION_3;
 
     /**
      * Secure

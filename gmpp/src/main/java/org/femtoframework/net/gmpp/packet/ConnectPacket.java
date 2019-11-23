@@ -42,6 +42,8 @@ public class ConnectPacket extends PacketBase
     private String secure;
     private long timestamp = System.currentTimeMillis();
 
+    private transient byte[] checksum;
+
     public ConnectPacket()
     {
         super(GmppConstants.PACKET_CONNECT);
@@ -183,8 +185,16 @@ public class ConnectPacket extends PacketBase
     }
 
     protected boolean isValidChecksum(int hostInt, byte[] bytes) {
+        if (bytes == null || bytes.length == 0) {
+            return false;
+        }
         byte[] checksum = calcChecksum(hostInt, getPort(), getServerType(), codec, timestamp);
         return ArrayUtil.matches(checksum, 0, bytes, 0, bytes.length);
+    }
+
+
+    public boolean isValidChecksum() {
+        return isValidChecksum(toInt(host), checksum);
     }
 
     /**
@@ -203,11 +213,8 @@ public class ConnectPacket extends PacketBase
         this.codec = CodecUtil.readSingle(pis);
         if (version == GmppConstants.VERSION_3) {
             this.timestamp = CodecUtil.readLong(pis);
-            byte[] bytes = new byte[16];
-            IOUtil.readFully(pis, bytes);
-            if (!isValidChecksum(hostInt, bytes)) {
-                throw new CommException("Invalid checksum:" + Hex.encode(bytes));
-            }
+            this.checksum = new byte[16];
+            IOUtil.readFully(pis, getChecksum());
         }
     }
 
@@ -262,5 +269,9 @@ public class ConnectPacket extends PacketBase
 
     public void setSecure(String secure) {
         this.secure = secure;
+    }
+
+    public byte[] getChecksum() {
+        return checksum;
     }
 }

@@ -66,6 +66,11 @@ public class GmppCommClient extends MessageCommClient
     private byte localVersion;
 
     /**
+     * Secure
+     */
+    private String secure;
+
+    /**
      * 构造
      */
     public GmppCommClient()
@@ -275,5 +280,16 @@ public class GmppCommClient extends MessageCommClient
 
     public void setLocalVersion(byte localVersion) {
         this.localVersion = localVersion;
+    }
+
+    /**
+     * Secure
+     */
+    public String getSecure() {
+        return secure;
+    }
+
+    public void setSecure(String secure) {
+        this.secure = secure;
     }
 }
